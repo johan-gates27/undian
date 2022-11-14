@@ -7,8 +7,10 @@
   <title>Layout &rsaquo; Top Navigation &mdash; Stisla</title>
 
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/fontawesome-free-5.7.2-web/css/all.css">
 
   <!-- CSS Libraries -->
 
@@ -22,7 +24,7 @@
     <div class="main-wrapper container">
       <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
-        <a href="index.html" class="navbar-brand sidebar-gone-hide">Undian</a>
+        <a href="index.html" class="navbar-brand sidebar-gone-hide">Milad 13</a>
         <div class="navbar-nav">
           <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
         </div>
@@ -107,7 +109,7 @@
       </nav> -->
 
       <!-- Main Content -->
-      <div class="main-content" style="padding-top: 80px;" >
+      <div class="main-content" style="padding-top: 80px;">
         <section class="section">
           <!-- <div class="section-header">
             <h1>Top Navigation</h1>
@@ -119,9 +121,14 @@
           </div> -->
 
           <div class="section-body">
+            <?php
+            // echo "<pre>";
+            // print_r($users);
+            // echo "</pre>";
+            ?>
             <div class="card">
               <div class="card-header">
-                <h4>Example Card</h4>
+                <h4>UNDIAN</h4>
               </div>
               <div class="card-body">
                 <!-- ----------------------------------------- -->
@@ -130,146 +137,178 @@
                     <div class="row">
                       <div class="col-12">
                         <div class="form-group row">
-                          <div class="col-md-4">
-                            <span>Parameter Jml Pemenang</span>
+                          <div class="col-md-2">
+                            <label class="col-form-label" for="hasil">PILIH HADIAH</label>
                           </div>
-                          <div class="col-md-8">
-                            <input type="number" id="jml_pemenang_param" class="form-control" name="jml_pemenang_param" value="<?php echo @$jml_pemenang_param; ?>">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <div class="form-group row">
-                          <div class="col-md-4">
-                            <span>First Name</span>
-                          </div>
-                          <div class="col-md-8">
-                            <input type="text" id="hasil" class="form-control" name="hasil" placeholder="First Name">
+                          <div class="col-md-10">
+                            <select class="form-control" name="pilih_hadiah" id="pilih_hadiah">
+                              <!-- <option value="" style="display:none;">-</option> -->
+                              <?php foreach ($list_hadiah as $row) {
+                              ?>
+                                <option value="<?php echo $row['id'] . "|" . $row['sisa']; ?>"><?php echo $row['nama'] . " (" . $row['qty_awal'] . " / " . $row['sisa'] . ")"; ?></option>
+                              <?php
+                              } ?>
+                            </select>
                           </div>
                         </div>
                       </div>
                       <div class="col-12">
                         <div class="form-group row">
-                          <div class="col-md-4">
-                            <span>Mobile</span>
+                          <div class="col-md-2">
+                            <label class="col-form-label" for="jml_pemenang_param">JML PEMENANG</label>
                           </div>
-                          <div class="col-md-8">
-                            <input type="number" id="contact-info" class="form-control" name="contact" placeholder="Mobile">
+                          <div class="col-md-4">
+                            <input type="number" id="jml_pemenang_param" class="form-control" name="jml_pemenang_param" min="0" max="30" value="<?php echo @$jml_pemenang_param; ?>">
+                          </div>
+                          <div class="col-md-1">
+                            <label class="col-form-label" for="badges_color">CONFIG</label>
+                          </div>
+                          <div class="col-md-3">
+                            <select class="form-control" name="badges_color" id="badges_color">
+                              <option value="primary">White On Blue</option>
+                              <option value="secondary">White On Grey</option>
+                              <option value="success">White On Green</option>
+                              <option value="danger">White on Red</option>
+                              <option value="warning">Black On Yellow</option>
+                              <option value="info">White on Blue Sky</option>
+                              <option value="light">Black on Grey</option>
+                              <option value="dark">White On Black</option>
+                            </select>
+                          </div>
+                          <div class="col-md-2">
+                            <select class="form-control" name="badges_size" id="badges_size">
+                              <option value="h1">H1</option>
+                              <option value="h2">H2</option>
+                              <option value="h3">H3</option>
+                              <option value="h4" selected>H4</option>
+                              <option value="h5">H5</option>
+                            </select>
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-8 offset-md-4">
-                        <button type="button" name="btn-generate" id="btn-generate" class="btn btn-success mr-1 mb-1 waves-effect waves-light">Generate</button>
-                        <button type="button" name="btn-stop" id="btn-stop" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light">stop</button>
-
+                      <div class="col-12 d-none">
+                        <div class="form-group row">
+                          <div class="col-md-2">
+                            <label class="col-form-label" for="hasil">NIK PEMENANG</label>
+                          </div>
+                          <div class="col-md-10">
+                            <input type="text" id="hasil" class="form-control" name="hasil" placeholder="NIK PEMENANG" readonly>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 text-center mb-3">
+                        <button type="button" name="btn-generate" id="btn-generate" class="btn btn-outline-primary mr-1 mb-1 waves-effect waves-light"><strong>START</strong></button>
+                        <button type="button" name="btn-stop" id="btn-stop" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light"><strong>STOP&nbsp;</strong></button>
+                        <button type="button" name="btn-save" id="btn-save" class="btn btn-outline-success mr-1 mb-1 waves-effect waves-light"><strong>SAVE&nbsp;</strong></button>
+                      </div>
+                      <div class="col-12 text-center">
+                        <div class="badges" id="pemenang_badges" style="min-height: 580px;">
+                        </div>
                       </div>
                     </div>
                   </div>
-                </form>
-
-
-
-                <!-- ----------------------------------------- -->
               </div>
-              <div class="card-footer bg-whitesmoke">
+              </form>
+            </div>
+            <!-- ----------------------------------------- -->
+            <!-- <div class="card-footer bg-whitesmoke">
                 This is card footer
-              </div>
-            </div>
+              </div> -->
           </div>
-
-        </section>
-        <section class="section">
-          <!-- <div class="section-header">
-            <h1>Top Navigation</h1>
-            <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-              <div class="breadcrumb-item"><a href="#">Layout</a></div>
-              <div class="breadcrumb-item">Top Navigation</div>
-            </div>
-          </div> -->
-
-          <div class="section-body">
-            <div class="card">
-              <div class="card-header">
-                <h4>Example Card</h4>
-              </div>
-              <div class="card-body">
-                <!-- ----------------------------------------- -->
-                <form class="form form-horizontal">
-                  <div class="form-body">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="form-group row">
-                          <div class="col-md-4">
-                            <span>First Name</span>
-                          </div>
-                          <div class="col-md-8">
-                            <div class="position-relative has-icon-left">
-                              <input type="text" id="fname-icon" class="form-control" name="fname-icon" placeholder="First Name">
-                              <div class="form-control-position">
-                                <i class="feather icon-user"></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-12">
-                        <div class="form-group row">
-                          <div class="col-md-4">
-                            <span>Mobile</span>
-                          </div>
-                          <div class="col-md-8">
-                            <div class="position-relative has-icon-left">
-                              <input type="number" id="contact-icon" class="form-control" name="contact-icon" placeholder="Mobile">
-                              <div class="form-control-position">
-                                <i class="feather icon-smartphone"></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary mr-1 mb-1 waves-effect waves-light">Submit</button>
-                        <button type="reset" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light">Reset</button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-
-
-
-                <!-- ----------------------------------------- -->
-              </div>
-              <div class="card-footer bg-whitesmoke">
-                This is card footer
-              </div>
-            </div>
-          </div>
-
-        </section>
       </div>
-      <footer class="main-footer mt-0">
-        <div class="footer-left">
-          Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+
+      </section>
+      <section class="section">
+        <!-- <div class="section-header">
+            <h1>Top Navigation</h1>
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+              <div class="breadcrumb-item"><a href="#">Layout</a></div>
+              <div class="breadcrumb-item">Top Navigation</div>
+            </div>
+          </div> -->
+
+        <div class="section-body">
+          <div class="card">
+            <div class="card-header">
+              <h4>Example Card</h4>
+            </div>
+            <div class="card-body">
+              <!-- ----------------------------------------- -->
+              <form class="form form-horizontal">
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group row">
+                        <div class="col-md-4">
+                          <span>First Name</span>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="position-relative has-icon-left">
+                            <input type="text" id="fname-icon" class="form-control" name="fname-icon" placeholder="First Name">
+                            <div class="form-control-position">
+                              <i class="feather icon-user"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div class="form-group row">
+                        <div class="col-md-4">
+                          <span>Mobile</span>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="position-relative has-icon-left">
+                            <input type="number" id="contact-icon" class="form-control" name="contact-icon" placeholder="Mobile">
+                            <div class="form-control-position">
+                              <i class="feather icon-smartphone"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-8 offset-md-4">
+                      <button type="submit" class="btn btn-primary mr-1 mb-1 waves-effect waves-light">Submit</button>
+                      <button type="reset" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light">Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+
+
+              <!-- ----------------------------------------- -->
+            </div>
+            <div class="card-footer bg-whitesmoke">
+              This is card footer
+            </div>
+          </div>
         </div>
-        <div class="footer-right">
-          2.3.0
-        </div>
-      </footer>
+
+      </section>
     </div>
+    <footer class="main-footer mt-0">
+      <div class="footer-left">
+        Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+      </div>
+      <div class="footer-right">
+        2.3.0
+      </div>
+    </footer>
+  </div>
   </div>
 
   <!-- General JS Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/popper.js/dist/umd/popper.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/nicescroll/dist/jquery.nicescroll.min.js"></script>
+  <script src="<?php echo base_url(); ?>node_modules/moment/min/moment.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/stisla.js"></script>
-
   <!-- JS Libraies -->
 
   <!-- Page Specific JS File -->
@@ -289,44 +328,98 @@
   var hasil
 
   function generate() {
-    size = $("#jml_pemenang_param").val(); //jumlah pemenang dalam 1 kocokan
-    highest = max_peserta // jumlah seluruh peserta
-    lowest = 0;
+    var pilih_hadiah = $.trim($("#pilih_hadiah").val())
+    var badges_color = $("#badges_color").val()
+    var badges_size = $("#badges_size").val()
+    var jml_pemenang_param = $("#jml_pemenang_param").val()
+    var msg_err = ""
+    if (pilih_hadiah != "" && badges_color != "" && badges_size != "" && jml_pemenang_param > 0) {
+      var isi = pilih_hadiah.split("|")
+      var kode_hadiah = isi[0]
+      var qty_hadiah = isi[1]
 
-    var numbers = [];
-    for (var i = 0; i < size; i++) {
-      var add = true;
-      var randomNumber = Math.floor(Math.random() * highest) + lowest;
-      for (var y = 0; y < highest; y++) {
-        if (numbers[y] == randomNumber) {
-          add = false;
+      // console.log(" qty_hadiah: " + qty_hadiah + " jml_pemenang_param: " + jml_pemenang_param + " badges_color: " + badges_color)
+
+      if (qty_hadiah > 0) {
+        $("#pemenang_badges").html(null)
+        size = $("#jml_pemenang_param").val(); //jumlah pemenang dalam 1 kocokan
+        var badges_color = $("#badges_color").val();
+        var badges_html = `<` + badges_size + ` class="d-inline"><span class="badge badge-` + badges_color + `"><strong>`
+        var badges_html_end = `</strong></span></` + badges_size + `>`
+
+        // console.log(badges_html)
+        highest = max_peserta // jumlah seluruh peserta
+        lowest = 0;
+
+        var numbers = [];
+        for (var i = 0; i < size; i++) {
+          var add = true;
+          var randomNumber = Math.floor(Math.random() * highest) + lowest;
+          for (var y = 0; y < highest; y++) {
+            if (numbers[y] == randomNumber) {
+              add = false;
+            }
+          }
+          if (add) {
+            numbers.push(randomNumber);
+          } else {
+            i--;
+          }
         }
-      }
-      if (add) {
-        numbers.push(randomNumber);
+
+        var highestNumber = 0;
+        for (var m = 0; m < numbers.length; m++) {
+          for (var n = m + 1; n < numbers.length; n++) {
+            if (numbers[n] < numbers[m]) {
+              highestNumber = numbers[m];
+              numbers[m] = numbers[n];
+              numbers[n] = highestNumber;
+            }
+          }
+        }
+
+        // console.log(numbers)
+
+        // $("#hasil").val(numbers)
+
+        hasil = null
+        nik_pemenang = []
+        hasil = numbers
+        var row = ''
+        for (var i = 0; i < hasil.length; i++) {
+          validx = hasil[i]
+          row = list_peserta[validx]
+          // console.log(row)
+          $("#pemenang_badges").append(badges_html + row.NAME.toUpperCase() + ` - ` + row.SUBPARENT_NAME + ` - ` + row.NIK + badges_html_end)
+          // nik_pemenang.push(row.NIK)
+          nik_pemenang[i] = row.NIK
+          // console.log("-----")
+        }
+        $("#hasil").val(nik_pemenang)
+        // console.log(nik_pemenang)
+
+
+
+
+        t = setTimeout(generate, 25) //25
       } else {
-        i--;
-      }
-    }
-
-    var highestNumber = 0;
-    for (var m = 0; m < numbers.length; m++) {
-      for (var n = m + 1; n < numbers.length; n++) {
-        if (numbers[n] < numbers[m]) {
-          highestNumber = numbers[m];
-          numbers[m] = numbers[n];
-          numbers[n] = highestNumber;
+        if (qty_hadiah == 0) {
+          msg_err = "Hadiah Ini Telah Habis"
+          alert(msg_err)
+          timer_is_on = 0
         }
       }
+    } else {
+      if (jml_pemenang_param == 0) {
+        msg_err = "Jumlah Pemenang Belum Di Tentukan"
+      } else if (badges_color == "") {
+        msg_err = "Pilih Warna Latar Pemenang"
+      } else if (badges_size == "") {
+        msg_err = "Size Text Pemenang Belum Ditentukan"
+      }
+      alert(msg_err)
+      timer_is_on = 0
     }
-
-    console.log(numbers)
-
-    $("#hasil").val(numbers)
-
-    hasil = null
-    hasil = numbers
-    t = setTimeout(generate, 25) //25
   }
 
   function startCount() {
@@ -339,16 +432,19 @@
   function stopCount() {
     clearTimeout(t);
     timer_is_on = 0;
-    // console.log("hasil :" + hasil)
-    for (var i = 0; i < hasil.length; i++) {
-      validx = hasil[i]
-      Object.entries(list_peserta[validx]).forEach(([key, value]) => {
-        console.log(key, value); // key ,value
-      });
-      console.log("-----")
-      // console.log(list_peserta[validx].NAMA)
-    }
   }
+
+  $(document).on('change', "select[name='pilih_hadiah']", function(event) {
+    var isi = this.value.split("|")
+    var kode_hadiah = isi[0]
+    var qty = isi[1]
+
+    if (qty > 0) {
+      $("#jml_pemenang_param").attr('max', qty).val(1).trigger('change');
+    } else {
+      $("#jml_pemenang_param").attr('min', 0).attr('max', 0).val(0).trigger('change');
+    }
+  })
 
   $(document).on('click', "button[name='btn-generate']", function(event) {
     startCount();
