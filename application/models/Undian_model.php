@@ -5,25 +5,6 @@ date_default_timezone_set('Asia/Jakarta');
 class Undian_model extends CI_Model
 {
 
-  // function get_ref_param_scoring($custom_select = NULL, $where_array, $order = NULL)
-  // {
-  //   if (!empty($where_array)) {
-  //     $this->db->where($where_array);
-  //   }
-
-  //   if (!empty($custom_select)) {
-  //     $this->db->select($custom_select, false);
-  //   };
-
-  //   if (!empty($order)) {
-  //     $this->db->order_by($order);
-  //   };
-
-  //   $query = $this->db->get('ref_param_scoring');
-  //   // print_r($this->db->last_query());
-  //   return $query->result();
-  // }
-
   public function insert_pemenang($data_array)
   {
     $this->db->set($data_array);
@@ -84,6 +65,68 @@ class Undian_model extends CI_Model
             AND USR.STATUS = '1'
             AND PEM.NIK IS NULL
             AND HG.NIK IS NULL
+    ";
+    $query = $this->db->query($str);
+    // print_r($this->db->last_query());
+    return $query->result_array();
+  }
+  function get_list_hangus()
+  {
+    $str = "SELECT
+              usr.name,
+              usr.nik,
+              brc.subparent_name,
+              usr.jabatan,
+              usr.unit, brc.branch_name,
+              brc.parent_name,
+              pem.id_hadiah,
+              had.nama nama_hadiah,
+              pem.[datetime],
+              cast(pem.[datetime] as date) tanggal ,
+              cast(pem.[datetime] as time(0)) jam ,
+              pem.id_batch
+            FROM USERS USR
+            LEFT JOIN BRANCHS BRC ON USR.UNIT = BRC.BRANCH_CODE
+            INNER JOIN ABSEN ABS ON USR.NIK = ABS.NIK
+            LEFT JOIN PEMENANG PEM ON USR.NIK = PEM.NIK
+            LEFT JOIN HANGUS HG ON USR.NIK = HG.NIK
+            LEFT JOIN HADIAH HAD ON PEM.ID_HADIAH = HAD.ID
+            WHERE 1=1
+              AND USR.STATUS = '1'
+              AND PEM.NIK IS NULL
+              AND HG.NIK IS NOT NULL
+            ORDER BY PEM.ID
+    ";
+    $query = $this->db->query($str);
+    // print_r($this->db->last_query());
+    return $query->result_array();
+  }
+  function get_list_pemenang()
+  {
+    $str = "SELECT
+              usr.name,
+              usr.nik,
+              brc.subparent_name,
+              usr.jabatan,
+              usr.unit, brc.branch_name,
+              brc.parent_name,
+              pem.id_hadiah,
+              had.nama nama_hadiah,
+              pem.[datetime],
+              cast(pem.[datetime] as date) tanggal ,
+              cast(pem.[datetime] as time(0)) jam ,
+              pem.id_batch
+            FROM USERS USR
+            LEFT JOIN BRANCHS BRC ON USR.UNIT = BRC.BRANCH_CODE
+            INNER JOIN ABSEN ABS ON USR.NIK = ABS.NIK
+            LEFT JOIN PEMENANG PEM ON USR.NIK = PEM.NIK
+            LEFT JOIN HANGUS HG ON USR.NIK = HG.NIK
+            LEFT JOIN HADIAH HAD ON PEM.ID_HADIAH = HAD.ID
+            WHERE 1=1
+              AND USR.STATUS = '1'
+              AND PEM.NIK IS NOT NULL
+              AND HG.NIK IS NULL
+            ORDER BY PEM.ID
     ";
     $query = $this->db->query($str);
     // print_r($this->db->last_query());

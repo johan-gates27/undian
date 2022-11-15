@@ -215,80 +215,103 @@
             <!-- <div class="card-footer bg-whitesmoke">
                 This is card footer
               </div> -->
-          </div>
-        </section>
-        <section class="section">
-          <!-- <div class="section-header">
-            <h1>Top Navigation</h1>
-            <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-              <div class="breadcrumb-item"><a href="#">Layout</a></div>
-              <div class="breadcrumb-item">Top Navigation</div>
-            </div>
-          </div> -->
 
-          <div class="section-body">
-            <div class="card">
-              <div class="card-header">
-                <h4>Example Card</h4>
-              </div>
-              <div class="card-body">
-                <!-- ----------------------------------------- -->
-                <form class="form form-horizontal">
-                  <div class="form-body">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="form-group row">
-                          <div class="col-md-4">
-                            <span>First Name</span>
-                          </div>
-                          <div class="col-md-8">
-                            <div class="position-relative has-icon-left">
-                              <input type="text" id="fname-icon" class="form-control" name="fname-icon" placeholder="First Name">
-                              <div class="form-control-position">
-                                <i class="feather icon-user"></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="col-12">
-                        <div class="form-group row">
-                          <div class="col-md-4">
-                            <span>Mobile</span>
-                          </div>
-                          <div class="col-md-8">
-                            <div class="position-relative has-icon-left">
-                              <input type="number" id="contact-icon" class="form-control" name="contact-icon" placeholder="Mobile">
-                              <div class="form-control-position">
-                                <i class="feather icon-smartphone"></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="col-md-8 offset-md-4">
-                        <button type="submit" class="btn btn-primary mr-1 mb-1 waves-effect waves-light">Submit</button>
-                        <button type="reset" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light">Reset</button>
-                      </div>
+            <div class="row">
+              <div class="col-12 col-md-6 col-lg-6">
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h4>List Pemenang</h4>
+                    <div class="card-header-action">
+                      <a data-collapse="#card_list_pemenang" class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
                     </div>
                   </div>
-                </form>
+                  <div class="collapse show" id="card_list_pemenang" >
+                  <div class="card-body" style="min-height:300px;">
+                    <!-- <p> -->
+                    <table class="table table-sm">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Nama</th>
+                          <th scope="col">Hadiah</th>
+                          <th scope="col">Waktu</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $i = 1;
+                        foreach ($list_pemenang as $row) {
+                        ?>
+                          <tr>
+                            <th scope="row"><?php echo $i++; ?></th>
+                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['nama_hadiah']; ?></td>
+                            <td><?php echo $row['jam']; ?></td>
+                          </tr>
+                        <?php } ?>
 
+                      </tbody>
+                    </table>
 
-
-                <!-- ----------------------------------------- -->
+                    <!-- </p> -->
+                  </div>
+                  </div>
+                </div>
               </div>
-              <div class="card-footer bg-whitesmoke">
-                This is card footer
+              <div class="col-12 col-md-6 col-lg-6">
+                <div class="card card-danger">
+                  <div class="card-header">
+                    <h4>Hangus</h4>
+                    <div class="card-header-action">
+                      <a data-collapse="#card_list_hangus" class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
+                    </div>
+                  </div>
+                  <div class="collapse show" id="card_list_hangus" >
+                  <div class="card-body" style="min-height:300px;">
+                    <!-- <p> -->
+                    <table class="table table-sm">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Nama</th>
+                          <th scope="col">Hadiah</th>
+                          <th scope="col">Waktu</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                        $i = 1;
+                        foreach ($list_hangus as $row) {
+                        ?>
+                          <tr>
+                            <th scope="row"><?php echo $i++; ?></th>
+                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['nama_hadiah']; ?></td>
+                            <td><?php echo $row['jam']; ?></td>
+                          </tr>
+                        <?php } ?>
+
+                      </tbody>
+                    </table>
+                    <!-- </p> -->
+                  </div>
+                  </div>
+                </div>
               </div>
+              <!-- <div class="col-12 col-md-6 col-lg-6">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Hangus</h4>
+                  </div>
+                  <div class="card-body">
+                    <p>LIST</p>
+                  </div>
+                </div>
+              </div> -->
             </div>
           </div>
-
         </section>
+
       </div>
 
     </div>
@@ -495,7 +518,7 @@
           // console.log(index+ ` - `+$(this).val())
           list_hangus[index] = $(this).val()
         })
-        
+
 
         $.ajax({
           type: "POST",
@@ -503,7 +526,7 @@
             [csrfName]: csrfHash,
             pemenang: list_pemenang,
             hangus: list_hangus,
-            id_hadiah : id_hadiah
+            id_hadiah: id_hadiah
           },
           cache: false,
           url: "<?php echo site_url('undian/simpan'); ?>",
@@ -512,7 +535,7 @@
             csrfName = data.csrfName
             csrfHash = data.csrfHash
             $("input[name='" + csrfName + "']").val(csrfHash)
-            if (data.simpan_pemenang == list_pemenang.length && data.simpan_hangus == list_hangus.length){
+            if (data.simpan_pemenang == list_pemenang.length && data.simpan_hangus == list_hangus.length) {
               alert("Simpan Sukses")
               location.reload()
             }

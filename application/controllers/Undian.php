@@ -17,6 +17,8 @@ class Undian extends CI_Controller
     $data['jml_pemenang_param'] = 1;
     $data['list_hadiah'] = $this->undian_model->get_list_hadiah();
     $data['list_peserta'] = $this->undian_model->get_list_peserta();
+    $data['list_pemenang'] = $this->undian_model->get_list_pemenang();
+    $data['list_hangus'] = $this->undian_model->get_list_hangus();
     $this->load->view('undian/undian', $data);
   }
 
