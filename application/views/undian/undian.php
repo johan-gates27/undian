@@ -215,11 +215,9 @@
                 This is card footer
               </div> -->
           </div>
-      </div>
-
-      </section>
-      <section class="section">
-        <!-- <div class="section-header">
+        </section>
+        <section class="section">
+          <!-- <div class="section-header">
             <h1>Top Navigation</h1>
             <div class="section-header-breadcrumb">
               <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
@@ -228,68 +226,70 @@
             </div>
           </div> -->
 
-        <div class="section-body">
-          <div class="card">
-            <div class="card-header">
-              <h4>Example Card</h4>
-            </div>
-            <div class="card-body">
-              <!-- ----------------------------------------- -->
-              <form class="form form-horizontal">
-                <div class="form-body">
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="form-group row">
-                        <div class="col-md-4">
-                          <span>First Name</span>
-                        </div>
-                        <div class="col-md-8">
-                          <div class="position-relative has-icon-left">
-                            <input type="text" id="fname-icon" class="form-control" name="fname-icon" placeholder="First Name">
-                            <div class="form-control-position">
-                              <i class="feather icon-user"></i>
+          <div class="section-body">
+            <div class="card">
+              <div class="card-header">
+                <h4>Example Card</h4>
+              </div>
+              <div class="card-body">
+                <!-- ----------------------------------------- -->
+                <form class="form form-horizontal">
+                  <div class="form-body">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group row">
+                          <div class="col-md-4">
+                            <span>First Name</span>
+                          </div>
+                          <div class="col-md-8">
+                            <div class="position-relative has-icon-left">
+                              <input type="text" id="fname-icon" class="form-control" name="fname-icon" placeholder="First Name">
+                              <div class="form-control-position">
+                                <i class="feather icon-user"></i>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div class="col-12">
-                      <div class="form-group row">
-                        <div class="col-md-4">
-                          <span>Mobile</span>
-                        </div>
-                        <div class="col-md-8">
-                          <div class="position-relative has-icon-left">
-                            <input type="number" id="contact-icon" class="form-control" name="contact-icon" placeholder="Mobile">
-                            <div class="form-control-position">
-                              <i class="feather icon-smartphone"></i>
+                      <div class="col-12">
+                        <div class="form-group row">
+                          <div class="col-md-4">
+                            <span>Mobile</span>
+                          </div>
+                          <div class="col-md-8">
+                            <div class="position-relative has-icon-left">
+                              <input type="number" id="contact-icon" class="form-control" name="contact-icon" placeholder="Mobile">
+                              <div class="form-control-position">
+                                <i class="feather icon-smartphone"></i>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
 
-                    <div class="col-md-8 offset-md-4">
-                      <button type="submit" class="btn btn-primary mr-1 mb-1 waves-effect waves-light">Submit</button>
-                      <button type="reset" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light">Reset</button>
+                      <div class="col-md-8 offset-md-4">
+                        <button type="submit" class="btn btn-primary mr-1 mb-1 waves-effect waves-light">Submit</button>
+                        <button type="reset" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light">Reset</button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </form>
+                </form>
 
 
 
-              <!-- ----------------------------------------- -->
-            </div>
-            <div class="card-footer bg-whitesmoke">
-              This is card footer
+                <!-- ----------------------------------------- -->
+              </div>
+              <div class="card-footer bg-whitesmoke">
+                This is card footer
+              </div>
             </div>
           </div>
-        </div>
 
-      </section>
+        </section>
+      </div>
+
     </div>
     <footer class="main-footer mt-0">
       <div class="footer-left">
@@ -331,7 +331,7 @@
     var str = `
               <` + badges_sz + ` class="d-inline">
                 <div class="form-check form-check-inline m-0">
-                  <label class="tag form-check-label text-capitalize badge badge-`+color+` mx-0" for="` + for_id + `">
+                  <label class="tag form-check-label text-capitalize badge badge-` + color + ` mx-0" for="` + for_id + `">
                     <input type="checkbox" name="` + name + `" id="` + id + `" class="form-check-input mr-2" value="` + value + `" style="transform: scale(2); " checked="">
                     <strong>` + nama_pemenang + `</strong>
                   </label>
@@ -479,15 +479,15 @@
     if (hasil != "") {
       var r = confirm("Klik OK untuk Simpan!");
       if (r == true) {
-        $("input[name^='badges_win_']:checked").each(function(index){
+        $("input[name^='badges_win_']:checked").each(function(index) {
           // console.log(index+ ` - `+$(this).val())
-          list_pemenang[index]=$(this).val()
+          list_pemenang[index] = $(this).val()
         })
-        $("input[name^='badges_win_']:not(:checked)").each(function(index){
+        $("input[name^='badges_win_']:not(:checked)").each(function(index) {
           // console.log(index+ ` - `+$(this).val())
-          list_hangus[index]=$(this).val()
+          list_hangus[index] = $(this).val()
         })
-        alert(list_pemenang+"\n"+list_hangus)
+        alert(list_pemenang + "\n" + list_hangus)
       }
     } else {
       alert("Silahan Laukan Pengundian Terlebih Dahulu")
