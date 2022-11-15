@@ -24,20 +24,36 @@ class Undian_model extends CI_Model
   //   return $query->result();
   // }
 
+  public function insert_pemenang($data_array)
+  {
+    $this->db->set($data_array);
+    $this->db->set("datetime", "getdate()", false);
+    $this->db->insert('pemenang');
+    // print_r($this->db->last_query());
+    return $this->db->affected_rows();
+  }
 
+  public function insert_hangus($data_array)
+  {
+    $this->db->set($data_array);
+    $this->db->set("datetime", "getdate()", false);
+    $this->db->insert('hangus');
+    // print_r($this->db->last_query());
+    return $this->db->affected_rows();
+  }
 
   function get_list_hadiah()
   {
-    $str = "SELECT 
-                h.id, 
+    $str = "SELECT
+                h.id,
                 h.nama,
                 h.qty as qty_awal,
                 tmp.jml as terpakai,
                 h.qty-tmp.jml as sisa
-            FROM HADIAH H 
+            FROM HADIAH H
             LEFT JOIN (
               SELECT ID, SUM(JML) JML FROM (
-                SELECT ID, 0 AS JML FROM HADIAH H 
+                SELECT ID, 0 AS JML FROM HADIAH H
                 UNION
                 SELECT ID_HADIAH AS ID, COUNT(ID) JML FROM PEMENANG P GROUP BY ID_HADIAH
               ) AS TMP GROUP BY ID

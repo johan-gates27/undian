@@ -133,6 +133,7 @@
               <div class="card-body">
                 <!-- ----------------------------------------- -->
                 <form class="form form-horizontal">
+                  <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" />
                   <div class="form-body">
                     <div class="row">
                       <div class="col-12">
@@ -322,6 +323,9 @@
   var max_peserta = list_peserta.length - 1
   console.log(max_peserta)
 
+  var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>'
+  var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>'
+
 
   var timer_is_on = 0;
   var t;
@@ -473,6 +477,10 @@
   });
 
   $(document).on('click', "button[name='btn-save']", function(event) {
+    var pilih_hadiah = $("#pilih_hadiah").val()
+    var isi = pilih_hadiah.split("|")
+    var id_hadiah = isi[0]
+
     var list_pemenang = []
     var list_hangus = []
     var hasil = $.trim($("#hasil").val())
@@ -487,7 +495,33 @@
           // console.log(index+ ` - `+$(this).val())
           list_hangus[index] = $(this).val()
         })
-        alert(list_pemenang + "\n" + list_hangus)
+        
+
+        $.ajax({
+          type: "POST",
+          data: {
+            [csrfName]: csrfHash,
+            pemenang: list_pemenang,
+            hangus: list_hangus,
+            id_hadiah : id_hadiah
+          },
+          cache: false,
+          url: "<?php echo site_url('undian/simpan'); ?>",
+          dataType: 'json',
+          success: function(data) {
+            csrfName = data.csrfName
+            csrfHash = data.csrfHash
+            $("input[name='" + csrfName + "']").val(csrfHash)
+            if (data.simpan_pemenang == list_pemenang.length && data.simpan_hangus == list_hangus.length){
+              alert("Simpan Sukses")
+              location.reload()
+            }
+
+          },
+          error: function(data) {
+            alert("Gagal ", +data)
+          }
+        })
       }
     } else {
       alert("Silahan Laukan Pengundian Terlebih Dahulu")
