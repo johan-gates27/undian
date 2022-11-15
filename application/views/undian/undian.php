@@ -197,12 +197,12 @@
                         </div>
                       </div>
                       <div class="col-12 text-center mb-3">
-                        <button type="button" name="btn-generate" id="btn-generate" class="btn btn-outline-primary mr-1 mb-1 waves-effect waves-light"><strong>START</strong></button>
-                        <button type="button" name="btn-stop" id="btn-stop" class="btn btn-outline-warning mr-1 mb-1 waves-effect waves-light"><strong>STOP&nbsp;</strong></button>
-                        <button type="button" name="btn-save" id="btn-save" class="btn btn-outline-success mr-1 mb-1 waves-effect waves-light"><strong>SAVE&nbsp;</strong></button>
+                        <button type="button" name="btn-generate" id="btn-generate" class="btn btn-success mr-1 mb-1 waves-effect waves-light"><strong><i class="fas fa-bolt"></i>&nbsp;START</strong></button>
+                        <button type="button" name="btn-stop" id="btn-stop" class="btn btn-danger mr-1 mb-1 waves-effect waves-light"><strong><i class="fas fa-times"></i>&nbsp;STOP&nbsp;</strong></button>
+                        <button type="button" name="btn-save" id="btn-save" class="btn btn-warning mr-1 mb-1 waves-effect waves-light"><strong><i class="fas fa-check"></i>&nbsp;SAVE&nbsp;</strong></button>
                       </div>
                       <div class="col-12 text-center">
-                        <div class="badges" id="pemenang_badges" style="min-height: 580px;">
+                        <div class="badges" id="pemenang_badges">
                         </div>
                       </div>
                     </div>
@@ -327,6 +327,20 @@
   var t;
   var hasil
 
+  function badge_winner(badges_sz, color, nama_pemenang, name, id, value, for_id) {
+    var str = `
+              <` + badges_sz + ` class="d-inline">
+                <div class="form-check form-check-inline m-0">
+                  <label class="tag form-check-label text-capitalize badge badge-`+color+` mx-0" for="` + for_id + `">
+                    <input type="checkbox" name="` + name + `" id="` + id + `" class="form-check-input mr-2" value="` + value + `" style="transform: scale(2); " checked="">
+                    <strong>` + nama_pemenang + `</strong>
+                  </label>
+                </div>
+              </` + badges_sz + `>
+              `
+    return str
+  }
+
   function generate() {
     var pilih_hadiah = $.trim($("#pilih_hadiah").val())
     var badges_color = $("#badges_color").val()
@@ -344,8 +358,8 @@
         $("#pemenang_badges").html(null)
         size = $("#jml_pemenang_param").val(); //jumlah pemenang dalam 1 kocokan
         var badges_color = $("#badges_color").val();
-        var badges_html = `<` + badges_size + ` class="d-inline"><span class="badge badge-` + badges_color + `"><strong>`
-        var badges_html_end = `</strong></span></` + badges_size + `>`
+        // var badges_html = `<` + badges_size + ` class="d-inline"><span class="badge badge-` + badges_color + `"><strong>`
+        // var badges_html_end = `</strong></span></` + badges_size + `>`
 
         // console.log(badges_html)
         highest = max_peserta // jumlah seluruh peserta
@@ -390,7 +404,8 @@
           validx = hasil[i]
           row = list_peserta[validx]
           // console.log(row)
-          $("#pemenang_badges").append(badges_html + row.NAME.toUpperCase() + ` - ` + row.SUBPARENT_NAME + ` - ` + row.NIK + badges_html_end)
+          // $("#pemenang_badges").append(badges_html + row.NIK.toUpperCase() +badges_html_val + row.NAME.toUpperCase() + ` - ` + row.SUBPARENT_NAME + ` - ` + row.NIK + badges_html_end)
+          $("#pemenang_badges").append(badge_winner(badges_size, badges_color, row.NAME.toUpperCase() + ` - ` + row.SUBPARENT_NAME + ` - ` + row.NIK, `badges_win_` + row.NIK, row.NIK, row.NIK, row.NIK))
           // nik_pemenang.push(row.NIK)
           nik_pemenang[i] = row.NIK
           // console.log("-----")
@@ -451,12 +466,34 @@
   });
 
   $(document).on('click', "button[name='btn-stop']", function(event) {
-
     stopCount()
     // setTimeout(function() {
     //   $("#result").slideDown(1000);
     // }, 500);
   });
+
+  $(document).on('click', "button[name='btn-save']", function(event) {
+    var list_pemenang = []
+    var list_hangus = []
+    var hasil = $.trim($("#hasil").val())
+    if (hasil != "") {
+      var r = confirm("Klik OK untuk Simpan!");
+      if (r == true) {
+        $("input[name^='badges_win_']:checked").each(function(index){
+          // console.log(index+ ` - `+$(this).val())
+          list_pemenang[index]=$(this).val()
+        })
+        $("input[name^='badges_win_']:not(:checked)").each(function(index){
+          // console.log(index+ ` - `+$(this).val())
+          list_hangus[index]=$(this).val()
+        })
+        alert(list_pemenang+"\n"+list_hangus)
+      }
+    } else {
+      alert("Silahan Laukan Pengundian Terlebih Dahulu")
+    }
+
+  })
 </script>
 
 </html>

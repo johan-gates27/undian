@@ -59,14 +59,15 @@ class Undian_model extends CI_Model
               USR.JABATAN,
               USR.UNIT, BRC.BRANCH_NAME,
               BRC.PARENT_NAME
-            FROM USERS USR 
+            FROM USERS USR
             LEFT JOIN BRANCHS BRC ON USR.UNIT = BRC.BRANCH_CODE
             INNER JOIN ABSEN ABS ON USR.NIK = ABS.NIK
-            LEFT JOIN PEMENANG PEM ON USR.NIK = PEM.NIK 
+            LEFT JOIN PEMENANG PEM ON USR.NIK = PEM.NIK
+            LEFT JOIN hangus HG ON USR.NIK = HG.NIK
             WHERE 1=1
             AND USR.STATUS = '1'
             AND PEM.NIK IS NULL
-            ;
+            AND HG.NIK IS NULL
     ";
     $query = $this->db->query($str);
     // print_r($this->db->last_query());
