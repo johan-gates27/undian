@@ -225,36 +225,36 @@
                       <a data-collapse="#card_list_pemenang" class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
                     </div>
                   </div>
-                  <div class="collapse show" id="card_list_pemenang" >
-                  <div class="card-body" style="min-height:300px;">
-                    <!-- <p> -->
-                    <table class="table table-sm">
-                      <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">Nama</th>
-                          <th scope="col">Hadiah</th>
-                          <th scope="col">Waktu</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $i = 1;
-                        foreach ($list_pemenang as $row) {
-                        ?>
+                  <div class="collapse show" id="card_list_pemenang">
+                    <div class="card-body" style="min-height:300px;">
+                      <!-- <p> -->
+                      <table class="table table-sm">
+                        <thead>
                           <tr>
-                            <th scope="row"><?php echo $i++; ?></th>
-                            <td><?php echo $row['name']; ?></td>
-                            <td><?php echo $row['nama_hadiah']; ?></td>
-                            <td><?php echo $row['jam']; ?></td>
+                            <th scope="col">#</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Hadiah</th>
+                            <th scope="col">Waktu</th>
                           </tr>
-                        <?php } ?>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $i = 1;
+                          foreach ($list_pemenang as $row) {
+                          ?>
+                            <tr>
+                              <th scope="row"><?php echo $i++; ?></th>
+                              <td><?php echo $row['name']; ?></td>
+                              <td><?php echo $row['nama_hadiah']; ?></td>
+                              <td><?php echo $row['jam']; ?></td>
+                            </tr>
+                          <?php } ?>
 
-                      </tbody>
-                    </table>
+                        </tbody>
+                      </table>
 
-                    <!-- </p> -->
-                  </div>
+                      <!-- </p> -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -266,36 +266,36 @@
                       <a data-collapse="#card_list_hangus" class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
                     </div>
                   </div>
-                  <div class="collapse show" id="card_list_hangus" >
-                  <div class="card-body" style="min-height:300px;">
-                    <!-- <p> -->
-                    <table class="table table-sm">
-                      <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">Nama</th>
-                          <th scope="col">Hadiah</th>
-                          <th scope="col">Waktu</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php
-                        $i = 1;
-                        foreach ($list_hangus as $row) {
-                          // print_r($row);
-                        ?>
+                  <div class="collapse show" id="card_list_hangus">
+                    <div class="card-body" style="min-height:300px;">
+                      <!-- <p> -->
+                      <table class="table table-sm">
+                        <thead>
                           <tr>
-                            <th scope="row"><?php echo $i++; ?></th>
-                            <td><?php echo $row['name']; ?></td>
-                            <td><?php echo $row['nama_hadiah']; ?></td>
-                            <td><?php echo $row['jam']; ?></td>
+                            <th scope="col">#</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Hadiah</th>
+                            <th scope="col">Waktu</th>
                           </tr>
-                        <?php } ?>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $i = 1;
+                          foreach ($list_hangus as $row) {
+                            // print_r($row);
+                          ?>
+                            <tr>
+                              <th scope="row"><?php echo $i++; ?></th>
+                              <td><?php echo $row['name']; ?></td>
+                              <td><?php echo $row['nama_hadiah']; ?></td>
+                              <td><?php echo $row['jam']; ?></td>
+                            </tr>
+                          <?php } ?>
 
-                      </tbody>
-                    </table>
-                    <!-- </p> -->
-                  </div>
+                        </tbody>
+                      </table>
+                      <!-- </p> -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -337,7 +337,7 @@
   <!-- JS Libraies -->
 
   <!-- Page Specific JS File -->
-
+  <script src="<?php echo base_url(); ?>node_modules/sweetalert/dist/sweetalert.min.js"></script>
   <!-- Template JS File -->
   <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
@@ -368,6 +368,39 @@
               `
     return str
   }
+
+  var drum
+
+  function playsound_drum() {
+    drum = new Audio(`<?php echo site_url("assets/notification/drum_roll_sound.mp3"); ?>`);
+    drum.loop = true;
+    drum.play();
+  }
+
+  function pause_drum() {
+    drum.pause();
+  }
+
+
+  $(document).on('click', "button[id='swal-6']", function(event) {
+    swal({
+        title: 'Are you sure?',
+        text: 'Once deleted, you will not be able to recover this imaginary file!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal('Poof! Your imaginary file has been deleted!', {
+            icon: 'success',
+          });
+        } else {
+          swal('Your imaginary file is safe!');
+        }
+      });
+    return false
+  });
 
   function generate() {
     var pilih_hadiah = $.trim($("#pilih_hadiah").val())
@@ -490,10 +523,12 @@
   })
 
   $(document).on('click', "button[name='btn-generate']", function(event) {
+    playsound_drum()
     startCount();
   });
 
   $(document).on('click', "button[name='btn-stop']", function(event) {
+    pause_drum()
     stopCount()
     // setTimeout(function() {
     //   $("#result").slideDown(1000);
@@ -509,46 +544,65 @@
     var list_hangus = []
     var hasil = $.trim($("#hasil").val())
     if (hasil != "") {
-      var r = confirm("Klik OK untuk Simpan!");
-      if (r == true) {
-        $("input[name^='badges_win_']:checked").each(function(index) {
-          // console.log(index+ ` - `+$(this).val())
-          list_pemenang[index] = $(this).val()
+      swal({
+          title: 'Confirmation!',
+          text: 'Klik OK untuk Simpan!',
+          icon: 'warning',
+          buttons: true,
+          dangerMode: false,
         })
-        $("input[name^='badges_win_']:not(:checked)").each(function(index) {
-          // console.log(index+ ` - `+$(this).val())
-          list_hangus[index] = $(this).val()
-        })
+        .then((willSave) => {
+          if (willSave) {
 
+            $("input[name^='badges_win_']:checked").each(function(index) {
+              // console.log(index+ ` - `+$(this).val())
+              list_pemenang[index] = $(this).val()
+            })
+            $("input[name^='badges_win_']:not(:checked)").each(function(index) {
+              // console.log(index+ ` - `+$(this).val())
+              list_hangus[index] = $(this).val()
+            })
 
-        $.ajax({
-          type: "POST",
-          data: {
-            [csrfName]: csrfHash,
-            pemenang: list_pemenang,
-            hangus: list_hangus,
-            id_hadiah: id_hadiah
-          },
-          cache: false,
-          url: "<?php echo site_url('undian/simpan'); ?>",
-          dataType: 'json',
-          success: function(data) {
-            csrfName = data.csrfName
-            csrfHash = data.csrfHash
-            $("input[name='" + csrfName + "']").val(csrfHash)
-            if (data.simpan_pemenang == list_pemenang.length && data.simpan_hangus == list_hangus.length) {
-              alert("Simpan Sukses")
-              location.reload()
-            }
+            $.ajax({
+              type: "POST",
+              data: {
+                [csrfName]: csrfHash,
+                pemenang: list_pemenang,
+                hangus: list_hangus,
+                id_hadiah: id_hadiah
+              },
+              cache: false,
+              url: "<?php echo site_url('undian/simpan'); ?>",
+              dataType: 'json',
+              success: function(data) {
+                csrfName = data.csrfName
+                csrfHash = data.csrfHash
+                $("input[name='" + csrfName + "']").val(csrfHash)
 
-          },
-          error: function(data) {
-            alert("Gagal ", +data)
+                if (data.simpan_pemenang == list_pemenang.length && data.simpan_hangus == list_hangus.length) {
+                  swal('Simpan Sukses', {
+                    icon: 'success',
+                  }).then((data) => {
+                    location.reload()
+                  });
+
+                }
+
+              },
+              error: function(data) {
+                // alert("Gagal ", +data)
+                swal('Gagal ' + data);
+              }
+            })
+          } else {
+
           }
-        })
-      }
+        });
     } else {
-      alert("Silahan Laukan Pengundian Terlebih Dahulu")
+      swal("Silahan Laukan Pengundian Terlebih Dahulu", {
+        icon: 'warning',
+      });
+
     }
 
   })
