@@ -24,7 +24,7 @@
     <div class="main-wrapper container">
       <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
-        <a href="index.html" class="navbar-brand sidebar-gone-hide">Milad 13</a>
+        <a href="index.html" class="navbar-brand sidebar-gone-hide">Milad13</a>
         <div class="navbar-nav">
           <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
         </div>
@@ -33,7 +33,7 @@
             <i class="fas fa-ellipsis-v"></i>
           </a>
           <ul class="navbar-nav">
-            <li class="nav-item active"><a href="#" class="nav-link">Panin Dubai Syariah</a></li>
+            <li class="nav-item active"><a href="#" class="nav-link">PANIN DUBAI SYARIAH</a></li>
             <!-- <li class="nav-item"><a href="#" class="nav-link">Report Something</a></li> -->
             <!-- <li class="nav-item"><a href="#" class="nav-link">Server Status</a></li> -->
           </ul>
@@ -157,6 +157,10 @@
                         <div class="form-group row">
                           <div class="col-md-2">
                             <label class="col-form-label" for="jml_pemenang_param">JML PEMENANG</label>
+                            <?php
+                            $conf_color = $this->session->userdata('conf_color');
+                            $conf_size = $this->session->userdata('conf_size');
+                            ?>
                           </div>
                           <div class="col-md-4">
                             <input type="number" id="jml_pemenang_param" class="form-control" name="jml_pemenang_param" min="0" max="30" value="<?php echo @$jml_pemenang_param; ?>">
@@ -166,23 +170,23 @@
                           </div>
                           <div class="col-md-3">
                             <select class="form-control" name="badges_color" id="badges_color">
-                              <option value="primary">White On Blue</option>
-                              <option value="secondary">White On Grey</option>
-                              <option value="success">White On Green</option>
-                              <option value="danger">White on Red</option>
-                              <option value="warning">Black On Yellow</option>
-                              <option value="info">White on Blue Sky</option>
-                              <option value="light">Black on Grey</option>
-                              <option value="dark">White On Black</option>
+                              <option value="primary" <?php echo ("primary" == $conf_color) ? " selected" : ""; ?>>White On Blue</option>
+                              <option value="secondary" <?php echo ("secondary" == $conf_color) ? " selected" : ""; ?>>White On Grey</option>
+                              <option value="success" <?php echo ("success" == $conf_color) ? " selected" : ""; ?>>White On Green</option>
+                              <option value="danger" <?php echo ("danger" == $conf_color) ? " selected" : ""; ?>>White on Red</option>
+                              <option value="warning" <?php echo ("warning" == $conf_color) ? " selected" : ""; ?>>Black On Yellow</option>
+                              <option value="info" <?php echo ("info" == $conf_color) ? " selected" : ""; ?>>White on Blue Sky</option>
+                              <option value="light" <?php echo ("light" == $conf_color) ? " selected" : ""; ?>>Black on Grey</option>
+                              <option value="dark" <?php echo ("dark" == $conf_color) ? " selected" : ""; ?>>White On Black</option>
                             </select>
                           </div>
                           <div class="col-md-2">
                             <select class="form-control" name="badges_size" id="badges_size">
-                              <option value="h1">H1</option>
-                              <option value="h2">H2</option>
-                              <option value="h3">H3</option>
-                              <option value="h4" selected>H4</option>
-                              <option value="h5">H5</option>
+                              <option value="h1" <?php echo ("h1" == $conf_size) ? " selected" : ""; ?>>H1</option>
+                              <option value="h2" <?php echo ("h2" == $conf_size) ? " selected" : ""; ?>>H2</option>
+                              <option value="h3" <?php echo ("h3" == $conf_size) ? " selected" : ""; ?>>H3</option>
+                              <option value="h4" <?php echo ("h4" == $conf_size) ? " selected" : ""; ?>>H4</option>
+                              <option value="h5" <?php echo ("h5" == $conf_size) ? " selected" : ""; ?>>H5</option>
                             </select>
                           </div>
                         </div>
@@ -226,7 +230,7 @@
                     </div>
                   </div>
                   <div class="collapse show" id="card_list_pemenang">
-                    <div class="card-body" style="min-height:300px;">
+                    <div class="card-body pb-0" style="min-height:100px;">
                       <!-- <p> -->
                       <table class="table table-sm">
                         <thead>
@@ -267,7 +271,7 @@
                     </div>
                   </div>
                   <div class="collapse show" id="card_list_hangus">
-                    <div class="card-body" style="min-height:300px;">
+                    <div class="card-body pb-0" style="min-height:100px;">
                       <!-- <p> -->
                       <table class="table table-sm">
                         <thead>
@@ -318,10 +322,11 @@
     </div>
     <footer class="main-footer mt-0">
       <div class="footer-left">
-        Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+        &nbsp;IT Dev @2022 <div class="bullet"></div> Apps By <a href="#1234568">Johan Efendy</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        Copyright &copy; 2022 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
       </div>
       <div class="footer-right">
-        2.3.0
+        <!-- 2.3.0 -->
       </div>
     </footer>
   </div>
@@ -526,6 +531,52 @@
     clearTimeout(t);
     timer_is_on = 0;
   }
+
+  $(document).on('change', "select[name='badges_size']", function(event) {
+    $.ajax({
+      type: "POST",
+      data: {
+        [csrfName]: csrfHash,
+        color: $("#badges_color").val(),
+        size: $("#badges_size").val()
+      },
+      cache: false,
+      url: "<?php echo site_url('undian/config_ui'); ?>",
+      dataType: 'json',
+      success: function(data) {
+        csrfName = data.csrfName
+        csrfHash = data.csrfHash
+        $("input[name='" + csrfName + "']").val(csrfHash)
+      },
+      error: function(data) {
+        // alert("Gagal ", +data)
+        swal('Gagal ' + data);
+      }
+    })
+  })
+
+  $(document).on('change', "select[name='badges_color']", function(event) {
+    $.ajax({
+      type: "POST",
+      data: {
+        [csrfName]: csrfHash,
+        color: $("#badges_color").val(),
+        size: $("#badges_size").val()
+      },
+      cache: false,
+      url: "<?php echo site_url('undian/config_ui'); ?>",
+      dataType: 'json',
+      success: function(data) {
+        csrfName = data.csrfName
+        csrfHash = data.csrfHash
+        $("input[name='" + csrfName + "']").val(csrfHash)
+      },
+      error: function(data) {
+        // alert("Gagal ", +data)
+        swal('Gagal ' + data);
+      }
+    })
+  })
 
   $(document).on('change', "select[name='pilih_hadiah']", function(event) {
     var isi = this.value.split("|")

@@ -10,6 +10,14 @@ class Undian extends CI_Controller
     $this->load->model('undian_model');
     $this->load->library('session');
     $this->load->helper('file');
+
+    if (empty($this->session->userdata('conf_color'))) {
+      $this->session->set_userdata("conf_color", "primary");
+    }
+
+    if (empty($this->session->userdata('conf_size'))) {
+      $this->session->set_userdata("conf_size", "h2");
+    }
   }
 
   public function index()
@@ -52,6 +60,27 @@ class Undian extends CI_Controller
     // $response['hangus'] = $hangus;
     $response['simpan_pemenang'] = $simpan_pemenang;
     $response['simpan_hangus'] = $simpan_hangus;
+
+    echo json_encode($response);
+  }
+
+  public function config_ui()
+  {
+    $response = array(
+      'csrfName' => $this->security->get_csrf_token_name(),
+      'csrfHash' => $this->security->get_csrf_hash()
+    );
+
+    $color = $this->input->post('color');
+    $size = $this->input->post('size');
+
+    if (!empty($color)) {
+      $this->session->set_userdata("conf_color", $color);
+    }
+
+    if (!empty($size)) {
+      $this->session->set_userdata("conf_size", $size);
+    }
 
     echo json_encode($response);
   }
