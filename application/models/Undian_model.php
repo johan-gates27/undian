@@ -79,24 +79,24 @@ class Undian_model extends CI_Model
               usr.jabatan,
               usr.unit, brc.branch_name,
               brc.parent_name,
-              pem.id_hadiah,
+              hg.id_hadiah,
               had.nama nama_hadiah,
-              pem.[datetime],
-              cast(pem.[datetime] as date) tanggal ,
-              cast(pem.[datetime] as time(0)) jam ,
-              pem.id_batch
+              hg.[datetime],
+              cast(hg.[datetime] as date) tanggal ,
+              cast(hg.[datetime] as time(0)) jam ,
+              hg.id_batch
             FROM USERS USR
             LEFT JOIN BRANCHS BRC ON USR.UNIT = BRC.BRANCH_CODE
             INNER JOIN ABSEN ABS ON USR.NIK = ABS.NIK
             LEFT JOIN PEMENANG PEM ON USR.NIK = PEM.NIK
             LEFT JOIN HANGUS HG ON USR.NIK = HG.NIK
-            LEFT JOIN HADIAH HAD ON PEM.ID_HADIAH = HAD.ID
+            LEFT JOIN HADIAH HAD ON HG.ID_HADIAH = HAD.ID
             WHERE 1=1
               AND USR.STATUS = '1'
               AND PEM.NIK IS NULL
               AND HG.NIK IS NOT NULL
-            ORDER BY PEM.ID
-    ";
+            ORDER BY HG.ID
+            ";
     $query = $this->db->query($str);
     // print_r($this->db->last_query());
     return $query->result_array();
