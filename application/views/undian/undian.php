@@ -370,15 +370,32 @@
   }
 
   var drum
+  drum = new Audio(`<?php echo site_url("assets/notification/drum_roll_sound.mp3"); ?>`);
+  drum.loop = true;
+
+  var victory
+  victory = new Audio(`<?php echo site_url("assets/notification/victory.mp3"); ?>`);
+
+  function playsound_victory() {
+    pause_victory()
+    pause_drum()
+    victory.play();
+  }
 
   function playsound_drum() {
-    drum = new Audio(`<?php echo site_url("assets/notification/drum_roll_sound.mp3"); ?>`);
-    drum.loop = true;
+    pause_victory()
+    pause_drum()
     drum.play();
+  }
+
+  function pause_victory() {
+    victory.pause();
+    victory.currentTime = 0;
   }
 
   function pause_drum() {
     drum.pause();
+    drum.currentTime = 0;
   }
 
 
@@ -523,13 +540,15 @@
   })
 
   $(document).on('click', "button[name='btn-generate']", function(event) {
-    playsound_drum()
     startCount();
+    playsound_drum()
   });
 
   $(document).on('click', "button[name='btn-stop']", function(event) {
-    pause_drum()
     stopCount()
+
+    pause_drum()
+    playsound_victory()
     // setTimeout(function() {
     //   $("#result").slideDown(1000);
     // }, 500);
