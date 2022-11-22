@@ -45,9 +45,9 @@
 
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
               <img alt="image" src="<?php echo base_url(); ?>assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-              <div class="d-sm-none d-lg-inline-block">Hi, Johan</div>
+              <div class="d-sm-none d-lg-inline-block">Hi, User</div>
             </a>
-            <div class="dropdown-menu dropdown-menu-right">
+            <!-- <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
@@ -62,7 +62,7 @@
               <a href="#" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
-            </div>
+            </div> -->
           </li>
         </ul>
       </nav>
@@ -163,7 +163,7 @@
                             ?>
                           </div>
                           <div class="col-md-4">
-                            <input type="number" id="jml_pemenang_param" class="form-control" name="jml_pemenang_param" min="0" max="30" value="<?php echo @$jml_pemenang_param; ?>">
+                            <input type="number" id="jml_pemenang_param" class="form-control" name="jml_pemenang_param" min="0" max="200" value="<?php echo @$jml_pemenang_param; ?>">
                           </div>
                           <div class="col-md-1">
                             <label class="col-form-label" for="badges_color">CONFIG</label>
@@ -553,6 +553,25 @@
         swal('Gagal ' + data);
       }
     })
+  })
+
+  $(document).on('blur', "input[name='jml_pemenang_param']", function(event) {
+    var pilih_hadiah = $("#pilih_hadiah").val()
+    var isi = pilih_hadiah.split("|")
+    var kode_hadiah = isi[0]
+    var qty = isi[1]
+
+    var ini_val = parseInt(this.value)
+
+    console.log(qty + "-" + this.value + "-" + this.id)
+
+    if (ini_val > parseFloat(qty)) {
+      $("#jml_pemenang_param").val(0)
+      swal("Jumlah Pemenang Tidak Boleh Melebihi Jumlah Hadiah", {
+        icon: 'warning',
+      });
+    }
+
   })
 
   $(document).on('change', "select[name='badges_color']", function(event) {
