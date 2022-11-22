@@ -6,6 +6,8 @@ application/logs/*
 !application/logs/index.html
 
 
+application/config/database.php
+
 # OS or Editor folders
 ._*
 .cache
