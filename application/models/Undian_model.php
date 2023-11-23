@@ -5,10 +5,14 @@ date_default_timezone_set('Asia/Jakarta');
 class Undian_model extends CI_Model
 {
 
+  public function insert_pemenang_batch($data){
+    $this->db->insert_batch('pemenang', $data,NULL,1000);
+  }
+
   public function insert_pemenang($data_array)
   {
     $this->db->set($data_array);
-    $this->db->set("datetime", "getdate()", false);
+    // $this->db->set("datetime", "getdate()", false);
     $this->db->insert('pemenang');
     // print_r($this->db->last_query());
     return $this->db->affected_rows();

@@ -24,7 +24,7 @@
     <div class="main-wrapper container">
       <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
-        <a href="index.html" class="navbar-brand sidebar-gone-hide">Milad13</a>
+        <a href="index.html" class="navbar-brand sidebar-gone-hide">Milad14</a>
         <div class="navbar-nav">
           <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
         </div>
@@ -146,7 +146,7 @@
                               <!-- <option value="" style="display:none;">-</option> -->
                               <?php foreach ($list_hadiah as $row) {
                               ?>
-                                <option value="<?php echo $row['id'] . "|" . $row['sisa']; ?>"><?php echo $row['nama'] . " (" . $row['qty_awal'] . " / " . $row['sisa'] . ")"; ?></option>
+                                <option value="<?php echo $row['id'] . "|" . $row['sisa']; ?>"><?php echo $row['nama'] . " (&nbsp;" . $row['sisa'] . "&nbsp;/&nbsp;" . $row['qty_awal'] . "&nbsp;)"; ?></option>
                               <?php
                               } ?>
                             </select>
@@ -349,6 +349,7 @@
 </body>
 <script>
   var list_peserta = JSON.parse(`<?php echo json_encode($list_peserta, JSON_PRETTY_PRINT); ?>`)
+  console.log(list_peserta)
   var max_peserta = list_peserta.length - 1
   console.log(max_peserta)
 
@@ -651,7 +652,11 @@
               // console.log(index+ ` - `+$(this).val())
               list_hangus[index] = $(this).val()
             })
-
+            console.log("pemengang")
+            console.log(list_pemenang)
+            console.log("hagus")
+            console.log(list_hangus)
+            
             $.ajax({
               type: "POST",
               data: {
@@ -666,6 +671,7 @@
               success: function(data) {
                 csrfName = data.csrfName
                 csrfHash = data.csrfHash
+                console.log(data.pemenang)
                 $("input[name='" + csrfName + "']").val(csrfHash)
 
                 if (data.simpan_pemenang == list_pemenang.length && data.simpan_hangus == list_hangus.length) {

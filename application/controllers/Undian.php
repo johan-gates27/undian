@@ -46,7 +46,7 @@ class Undian extends CI_Controller
 
     if (!empty($pemenang)) {
       foreach ($pemenang as $nik) {
-        $simpan_pemenang = $simpan_pemenang + $this->undian_model->insert_pemenang(["nik" => $nik, "id_hadiah" => $id_hadiah, "id_batch" => $id_batch]);
+        $simpan_pemenang = $simpan_pemenang + $this->undian_model->insert_pemenang(["nik" => $nik, "id_hadiah" => $id_hadiah, "id_batch" => $id_batch,"datetime"=>date("Y-m-d H:i:s")]);
       }
     }
 
