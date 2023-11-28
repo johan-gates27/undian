@@ -72,7 +72,15 @@ class Undian_model extends CI_Model
     ";
     $query = $this->db->query($str);
     // print_r($this->db->last_query());
-    return $query->result_array();
+    $hasil = $query->result_array();
+    foreach ($hasil as $key => $row) {
+      $data = $row;
+      foreach ($data as $key2 => $val2) {
+        $isi = str_replace(array('`', '"'), ' ', $val2);
+        $hasil[$key][$key2] = $isi;
+      }
+    }
+    return $hasil;
   }
   function get_list_hangus()
   {
