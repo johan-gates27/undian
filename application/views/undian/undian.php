@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>PDSB &rsaquo; Milad13 &mdash; UNDIAN</title>
+  <title>PDSB &rsaquo; Milad14 &mdash; UNDIAN</title>
 
   <!-- General CSS Files -->
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
@@ -165,10 +165,15 @@
                           <div class="col-md-4">
                             <input type="number" id="jml_pemenang_param" class="form-control" name="jml_pemenang_param" min="0" max="200" value="<?php echo @$jml_pemenang_param; ?>">
                           </div>
-                          <div class="col-md-1">
-                            <label class="col-form-label" for="badges_color">CONFIG</label>
+                          <div class="col-md-2">
+                            <h4>
+                              <span class="badge badge-primary"><i class="fas fa-users" style="font-size: 15px;"></i>&nbsp;<strong><?php echo count($list_peserta); ?></strong>&nbsp;Remaining</span>
+                            </h4>
                           </div>
-                          <div class="col-md-3">
+                          <div class="col-md-1">
+                            <label class="col-form-label" for="badges_color"> &nbsp;CONFIG</label>
+                          </div>
+                          <div class="col-md-2">
                             <select class="form-control" name="badges_color" id="badges_color">
                               <option value="primary" <?php echo ("primary" == $conf_color) ? " selected" : ""; ?>>White On Blue</option>
                               <option value="secondary" <?php echo ("secondary" == $conf_color) ? " selected" : ""; ?>>White On Grey</option>
@@ -180,7 +185,7 @@
                               <option value="dark" <?php echo ("dark" == $conf_color) ? " selected" : ""; ?>>White On Black</option>
                             </select>
                           </div>
-                          <div class="col-md-2">
+                          <div class="col-md-1">
                             <select class="form-control" name="badges_size" id="badges_size">
                               <option value="h1" <?php echo ("h1" == $conf_size) ? " selected" : ""; ?>>H1</option>
                               <option value="h2" <?php echo ("h2" == $conf_size) ? " selected" : ""; ?>>H2</option>
@@ -221,10 +226,13 @@
               </div> -->
 
             <div class="row">
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-md-7 col-lg-7">
                 <div class="card card-primary">
                   <div class="card-header">
                     <h4>List Pemenang</h4>
+                    <h4>
+                      <span class="badge badge-primary"><i class="fas fa-trophy" style="font-size: 15px;"></i>&nbsp; <strong><?php echo count($list_pemenang); ?></strong></span>
+                    </h4>
                     <div class="card-header-action">
                       <a data-collapse="#card_list_pemenang" class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
                     </div>
@@ -232,11 +240,13 @@
                   <div class="collapse show" id="card_list_pemenang">
                     <div class="card-body pb-0" style="min-height:100px;">
                       <!-- <p> -->
-                      <table class="table table-sm">
+                      <table class="table table-sm ">
                         <thead>
                           <tr>
                             <th scope="col">#</th>
+                            <!-- <th scope="col">Nik</th> -->
                             <th scope="col">Nama</th>
+                            <!-- <th scope="col">Bagian</th> -->
                             <th scope="col">Hadiah</th>
                             <th scope="col">Waktu</th>
                           </tr>
@@ -248,7 +258,9 @@
                           ?>
                             <tr>
                               <th scope="row"><?php echo $i++; ?></th>
-                              <td><?php echo $row['name']; ?></td>
+                              <td><?php echo $row['nik']; ?> - <?php echo ucwords(strtolower($row['name'])); ?> - <small><?php echo ucwords(strtolower(str_replace('DIVISI ', "", $row['subparent_name']))); ?></small></td>
+                              <!-- <td></td> -->
+                              <!-- <td></td> -->
                               <td><?php echo $row['nama_hadiah']; ?></td>
                               <td><?php echo $row['jam']; ?></td>
                             </tr>
@@ -262,10 +274,13 @@
                   </div>
                 </div>
               </div>
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-md-5 col-lg-5">
                 <div class="card card-danger">
                   <div class="card-header">
                     <h4>Hangus</h4>
+                    <h4>
+                      <span class="badge badge-danger"><i class="fas fa-user-slash" style="font-size: 15px;"></i>&nbsp; <strong><?php echo count($list_hangus); ?></strong></span>
+                    </h4>
                     <div class="card-header-action">
                       <a data-collapse="#card_list_hangus" class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
                     </div>
@@ -656,7 +671,7 @@
             console.log(list_pemenang)
             console.log("hagus")
             console.log(list_hangus)
-            
+
             $.ajax({
               type: "POST",
               data: {

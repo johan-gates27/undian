@@ -66,7 +66,7 @@ class Undian_model extends CI_Model
             LEFT JOIN PEMENANG PEM ON USR.NIK = PEM.NIK
             LEFT JOIN hangus HG ON USR.NIK = HG.NIK
             WHERE 1=1
-            AND USR.STATUS = '1'
+            -- AND USR.STATUS = '1'
             AND PEM.NIK IS NULL
             AND HG.NIK IS NULL
     ";
@@ -104,7 +104,7 @@ class Undian_model extends CI_Model
             LEFT JOIN HANGUS HG ON USR.NIK = HG.NIK
             LEFT JOIN HADIAH HAD ON HG.ID_HADIAH = HAD.ID
             WHERE 1=1
-              AND USR.STATUS = '1'
+              -- AND USR.STATUS = '1'
               AND PEM.NIK IS NULL
               AND HG.NIK IS NOT NULL
             ORDER BY HG.ID
@@ -135,10 +135,10 @@ class Undian_model extends CI_Model
             LEFT JOIN HANGUS HG ON USR.NIK = HG.NIK
             LEFT JOIN HADIAH HAD ON PEM.ID_HADIAH = HAD.ID
             WHERE 1=1
-              AND USR.STATUS = '1'
+              -- AND USR.STATUS = '1'
               AND PEM.NIK IS NOT NULL
               AND HG.NIK IS NULL
-            ORDER BY PEM.ID
+            ORDER BY pem.id_batch desc, pem.id
     ";
     $query = $this->db->query($str);
     // print_r($this->db->last_query());
