@@ -107,7 +107,7 @@ class Undian_model extends CI_Model
               -- AND USR.STATUS = '1'
               AND PEM.NIK IS NULL
               AND HG.NIK IS NOT NULL
-            ORDER BY HG.ID
+            ORDER BY HG.id_batch DESC, HG.ID
             ";
     $query = $this->db->query($str);
     // print_r($this->db->last_query());

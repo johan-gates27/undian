@@ -14,3 +14,4 @@ application/config/database.php
 .DS_Store
 .idea
 .vscode
+vendor/*
