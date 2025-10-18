@@ -4,6 +4,48 @@
  * because it will make it harder for you to update.
  * 
  */
+.navbar-bg {
+  /* background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'); /* ganti dengan URL pattern pantai kamu */ 
+  background-image: url('http://localhost/undian_doorprize/assets/img/milad_16_sm.png'); /* ganti dengan URL pattern pantai kamu */
+  background-repeat: repeat;
+  background-size: 300px;
+  /* opacity:0.5; */
+  /* filter: grayscale(50%); */
+  /* background-color: #ffffff; /* opsional, bisa dikombinasikan */
+}
+
+
+.outlined-text {
+  color: white; /* Warna isi teks */
+  -webkit-text-stroke: 2px black; /* Border luar teks */
+  text-stroke: 2px black; /* Untuk browser yang mendukung */
+}
+
+.outlined-only {
+  color: transparent;
+  -webkit-text-stroke: 2px white;
+}
+
+.shadow-outline {
+  color: white;
+  text-shadow:
+    -1px -1px 0 black,
+     1px -1px 0 black,
+    -1px  1px 0 black,
+     1px  1px 0 black;
+}
+
+.text-outline-shadow {
+  font-size: 30px;
+  font-weight: bold;
+  color: white; /* Text fill color */
+  -webkit-text-stroke: 2px black; /* Outline */
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5); /* Shadow */
+}
+
+.tombol-play{
+  width: 70px; height: 70px; 
+}
 
 
 /*# sourceMappingURL=custom.css.map */

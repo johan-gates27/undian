@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>PDSB &rsaquo; Milad14 &mdash; UNDIAN</title>
+  <!-- <title>PDSB &rsaquo; IT PDSB GOES CARITA BEACH &mdash; UNDIAN</title> -->
+  <title>PDSB &rsaquo; Doorprize &rsaquo; UNDIAN</title>
 
   <!-- General CSS Files -->
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
@@ -16,37 +17,59 @@
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/custom.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/components.css">
 </head>
 
-<body class="layout-3">
+<body class="layout-3 navbar-bg bg-light">
   <div id="app">
     <div class="main-wrapper container">
-      <div class="navbar-bg"></div>
+      <div class="navbar-bg bg-light"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
-        <a href="index.html" class="navbar-brand sidebar-gone-hide">Milad14</a>
+        <!-- <a href="index.html" class="navbar-brand sidebar-gone-hide text-primary">PDSB</a> -->
+        <h3><span class="navbar-brand sidebar-gone-hide  badge badge-primary">PDSB</span></h3>
         <div class="navbar-nav">
           <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
         </div>
-        <div class="nav-collapse">
+        <div class="nav-collapse  w-100">
           <a class="sidebar-gone-show nav-collapse-toggle nav-link" href="#">
             <i class="fas fa-ellipsis-v"></i>
           </a>
-          <ul class="navbar-nav">
-            <li class="nav-item active"><a href="#" class="nav-link">PANIN DUBAI SYARIAH</a></li>
+          <ul class="navbar-nav w-100">
+            <li class="nav-item active w-100">
+              <h4>
+                <a href="#" class="nav-link">
+                  <marquee behavior="scroll" direction="left">
+                    <span class="badge badge-pill badge-dark">DOORPRIZE MILAD 16</span>
+                    <span class="badge badge-info font-italic">#TogetherWeGrowWeMatther</span>
+                    <span class="badge badge-warning font-italic text-dark">#RaihMimpiMenangkanHadiah</span>
+                    <span class="badge badge-secondary font-italic text-dark">#MainSekarangMenangBesar</span>
+                    <span class="badge badge-success font-italic">#TanpaDepositDapatkanHadiahLangsung</span>
+                    <span class="badge badge-light font-italic text-dark">#MaxWin</span>
+                    <span class="badge badge-info font-italic">#MudahJp</span>
+                  </marquee>
+                </a>
+
+              </h4>
+            </li>
             <!-- <li class="nav-item"><a href="#" class="nav-link">Report Something</a></li> -->
             <!-- <li class="nav-item"><a href="#" class="nav-link">Server Status</a></li> -->
           </ul>
         </div>
-        <form class="form-inline ml-auto">
-          <!-- biarkan jangan dihapus bekas search -->
-        </form>
-        <ul class="navbar-nav navbar-right">
-
-          <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-              <img alt="image" src="<?php echo base_url(); ?>assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-              <div class="d-sm-none d-lg-inline-block">Hi, User</div>
-            </a>
+        <ul class="navbar-nav navbar-right ml-auto">
+          <li class="dropdown">
+            <span class="badge badge-primary pl-0 pr-0">
+              <!-- <a href="#" data-toggle="dropdown" class="nav-link nav-link-lg nav-link-user"> -->
+              <!-- <img alt="image" src="<?php echo base_url(); ?>assets/img/avatar/petir.png" class="rounded-circle mr-1"> -->
+              <!-- <i class="fa fa-bolt" aria-hidden="true"></i> -->
+              <!-- <div class="d-sm-none d-lg-inline-block"><strong>Hi, SULTAN</strong></div> -->
+              <!-- </a> -->
+              <a href="#" data-toggle="dropdown" class="nav-link nav-link-lg nav-link-user" style="position: relative; display: inline-flex; align-items: center; padding-top: 60px;">
+                <img alt="image" src="http://localhost/undian_doorprize/assets/img/avatar/petir.png"
+                  style="position: absolute; top: -22px; left: -3px; width: 56px; height: 56px; border-radius: 37%; z-index: 10;">
+                <div class="d-sm-none d-lg-inline-block pt-2 pb-2" style="margin-left: 36px;"><strong>Hi, SULTAN</strong></div>
+              </a>
+            </span>
             <!-- <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-title">Logged in 5 min ago</div>
               <a href="features-profile.html" class="dropdown-item has-icon">
@@ -129,6 +152,7 @@
             <div class="card">
               <div class="card-header">
                 <h4>UNDIAN</h4>
+                <!-- <button class="btn btn-sm btn-primary" id="play_back_sound"><span class='fa fa-volume-up'></span></button> -->
               </div>
               <div class="card-body">
                 <!-- ----------------------------------------- -->
@@ -208,8 +232,10 @@
                       </div>
                       <div class="col-12 text-center mb-3">
                         <button type="button" name="btn-generate" id="btn-generate" class="btn btn-success mr-1 mb-1 waves-effect waves-light"><strong><i class="fas fa-bolt"></i>&nbsp;START</strong></button>
-                        <button type="button" name="btn-stop" id="btn-stop" class="btn btn-danger mr-1 mb-1 waves-effect waves-light"><strong><i class="fas fa-times"></i>&nbsp;STOP&nbsp;</strong></button>
+                        <button type="button" name="btn-stop" id="btn-stop" class="btn btn-danger mr-1 mb-1 waves-effect waves-light"><strong><i class="fas fa-stop"></i>&nbsp;STOP&nbsp;</strong></button>
                         <button type="button" name="btn-save" id="btn-save" class="btn btn-warning mr-1 mb-1 waves-effect waves-light"><strong><i class="fas fa-check"></i>&nbsp;SAVE&nbsp;</strong></button>
+
+
                       </div>
                       <div class="col-12 text-center">
                         <div class="badges" id="pemenang_badges">
@@ -365,7 +391,8 @@
 <script>
   var list_peserta = JSON.parse(`<?php echo json_encode($list_peserta, JSON_PRETTY_PRINT); ?>`)
   console.log(list_peserta)
-  var max_peserta = list_peserta.length - 1
+  // bug list_peserta.length tidak perlu di kurang 1
+  var max_peserta = list_peserta.length
   console.log(max_peserta)
 
   var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>'
@@ -397,16 +424,31 @@
   var victory
   victory = new Audio(`<?php echo site_url("assets/notification/victory.mp3"); ?>`);
 
+  var spongebob
+  spongebob = new Audio(`<?php echo site_url("assets/notification/SpongeBob_Chum_Bucket_Rhumba.mp3"); ?>`);
+
+
+
   function playsound_victory() {
     pause_victory()
     pause_drum()
-    victory.play();
+    pause_spongebob()
+    // victory.play();
+    spongebob.play();
   }
 
   function playsound_drum() {
     pause_victory()
     pause_drum()
+    pause_spongebob()
     drum.play();
+  }
+
+  function playsound_spongebob() {
+    pause_victory()
+    pause_drum()
+    pause_spongebob()
+    spongebob.play();
   }
 
   function pause_victory() {
@@ -419,7 +461,16 @@
     drum.currentTime = 0;
   }
 
+  function pause_spongebob() {
+    spongebob.pause();
+    spongebob.currentTime = 0;
+  }
 
+
+
+  $(document).on('click', "button[id='play_back_sound']", function(event) {
+    playsound_spongebob()
+  })
   $(document).on('click', "button[id='swal-6']", function(event) {
     swal({
         title: 'Are you sure?',
@@ -454,6 +505,9 @@
       // console.log(" qty_hadiah: " + qty_hadiah + " jml_pemenang_param: " + jml_pemenang_param + " badges_color: " + badges_color)
 
       if (qty_hadiah > 0) {
+        // $("#btn-generate").hide()
+        // $("#btn-stop").show()
+
         $("#pemenang_badges").html(null)
         size = $("#jml_pemenang_param").val(); //jumlah pemenang dalam 1 kocokan
         var badges_color = $("#badges_color").val();
@@ -479,17 +533,19 @@
             i--;
           }
         }
+        console.log("raw: " + numbers)
 
-        var highestNumber = 0;
-        for (var m = 0; m < numbers.length; m++) {
-          for (var n = m + 1; n < numbers.length; n++) {
-            if (numbers[n] < numbers[m]) {
-              highestNumber = numbers[m];
-              numbers[m] = numbers[n];
-              numbers[n] = highestNumber;
-            }
-          }
-        }
+        // var highestNumber = 0;
+        // for (var m = 0; m < numbers.length; m++) {
+        //   for (var n = m + 1; n < numbers.length; n++) {
+        //     if (numbers[n] < numbers[m]) {
+        //       highestNumber = numbers[m];
+        //       numbers[m] = numbers[n];
+        //       numbers[n] = highestNumber;
+        //     }
+        //   }
+        // }
+        // console.log("Ordered: "+numbers)
 
         // console.log(numbers)
 
@@ -625,12 +681,16 @@
     }
   })
 
+  // $("#btn-stop").hide()
+
   $(document).on('click', "button[name='btn-generate']", function(event) {
     startCount();
     playsound_drum()
   });
 
   $(document).on('click', "button[name='btn-stop']", function(event) {
+    // $(this).hide()
+    // $("#btn-generate").show()
     stopCount()
 
     pause_drum()
