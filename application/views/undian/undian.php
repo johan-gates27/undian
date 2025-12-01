@@ -42,11 +42,11 @@
                   <marquee behavior="scroll" direction="left">
                     <span class="badge badge-pill badge-dark">DOORPRIZE MILAD 16</span>
                     <span class="badge badge-info font-italic">#TogetherWeGrowWeMatther</span>
-                    <span class="badge badge-warning font-italic text-dark">#RaihMimpiMenangkanHadiah</span>
-                    <span class="badge badge-secondary font-italic text-dark">#MainSekarangMenangBesar</span>
-                    <span class="badge badge-success font-italic">#TanpaDepositDapatkanHadiahLangsung</span>
-                    <span class="badge badge-light font-italic text-dark">#MaxWin</span>
-                    <span class="badge badge-info font-italic">#MudahJp</span>
+                    <!-- <span class="badge badge-warning font-italic text-dark">#RaihMimpiMenangkanHadiah</span> -->
+                    <!-- <span class="badge badge-secondary font-italic text-dark">#MainSekarangMenangBesar</span> -->
+                    <!-- <span class="badge badge-success font-italic">#TanpaDepositDapatkanHadiahLangsung</span> -->
+                    <!-- <span class="badge badge-light font-italic text-dark">#MaxWin</span> -->
+                    <!-- <span class="badge badge-info font-italic">#MudahJp</span> -->
                   </marquee>
                 </a>
 
