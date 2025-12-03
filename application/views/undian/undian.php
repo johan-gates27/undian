@@ -284,7 +284,7 @@
                           ?>
                             <tr>
                               <th scope="row"><?php echo $i++; ?></th>
-                              <td><?php echo $row['nik']; ?> - <?php echo ucwords(strtolower($row['name'])); ?> - <small><?php echo ucwords(strtolower(str_replace('DIVISI ', "", $row['subparent_name']))); ?></small></td>
+                              <td><?php echo $row['nik']; ?> - <?php echo ucwords(strtolower($row['name'])); ?> - <small><?php echo ucwords(strtolower(str_replace('DIVISI ', "", $row['subparent_name']))), " - ", ucwords(strtolower($row['parent_name'])); ?></small></td>
                               <!-- <td></td> -->
                               <!-- <td></td> -->
                               <td><?php echo $row['nama_hadiah']; ?></td>
@@ -560,7 +560,7 @@
           row = list_peserta[validx]
           // console.log(row)
           // $("#pemenang_badges").append(badges_html + row.NIK.toUpperCase() +badges_html_val + row.NAME.toUpperCase() + ` - ` + row.SUBPARENT_NAME + ` - ` + row.NIK + badges_html_end)
-          $("#pemenang_badges").append(badge_winner(badges_size, badges_color, row.NAME.toUpperCase() + ` - ` + row.SUBPARENT_NAME + ` - ` + row.NIK, `badges_win_` + row.NIK, row.NIK, row.NIK, row.NIK))
+          $("#pemenang_badges").append(badge_winner(badges_size, badges_color, row.NAME.toUpperCase() + ` - ` + row.SUBPARENT_NAME + ` - ` + row.PARENT_NAME + ` - ` + row.NIK, `badges_win_` + row.NIK, row.NIK, row.NIK, row.NIK))
           // nik_pemenang.push(row.NIK)
           nik_pemenang[i] = row.NIK
           // console.log("-----")
