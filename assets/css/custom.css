@@ -5,8 +5,7 @@
  * 
  */
 .navbar-bg {
-  /* background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'); /* ganti dengan URL pattern pantai kamu */ 
-  background-image: url('http://localhost/undian_doorprize/assets/img/milad_16_sm.png'); /* ganti dengan URL pattern pantai kamu */
+  background-image: url('../img/bg_patern.png');
   background-repeat: repeat;
   background-size: 300px;
   /* opacity:0.5; */

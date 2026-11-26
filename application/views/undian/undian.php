@@ -6,6 +6,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <!-- <title>PDSB &rsaquo; IT PDSB GOES CARITA BEACH &mdash; UNDIAN</title> -->
   <title>PDSB &rsaquo; Doorprize &rsaquo; UNDIAN</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f59e0b'%3E%3Cpath d='M13 2L3 14h7l-1 8 10-12h-7l1-8z'/%3E%3C/svg%3E">
 
   <!-- General CSS Files -->
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
@@ -40,13 +41,13 @@
               <h4>
                 <a href="#" class="nav-link">
                   <marquee behavior="scroll" direction="left">
-                    <span class="badge badge-pill badge-dark">DOORPRIZE MILAD 16</span>
+                    <span class="badge badge-pill badge-dark">DOORPRIZE MILAD 17</span>
                     <span class="badge badge-info font-italic">#TogetherWeGrowWeMatther</span>
-                    <!-- <span class="badge badge-warning font-italic text-dark">#RaihMimpiMenangkanHadiah</span> -->
-                    <!-- <span class="badge badge-secondary font-italic text-dark">#MainSekarangMenangBesar</span> -->
-                    <!-- <span class="badge badge-success font-italic">#TanpaDepositDapatkanHadiahLangsung</span> -->
-                    <!-- <span class="badge badge-light font-italic text-dark">#MaxWin</span> -->
-                    <!-- <span class="badge badge-info font-italic">#MudahJp</span> -->
+                    <span class="badge badge-warning font-italic text-dark">#RaihMimpiMenangkanHadiah</span>
+                    <span class="badge badge-secondary font-italic text-dark">#MainSekarangMenangBesar</span>
+                    <span class="badge badge-success font-italic">#TanpaDepositDapatkanHadiahLangsung</span>
+                    <span class="badge badge-light font-italic text-dark">#MaxWin</span>
+                    <span class="badge badge-info font-italic">#LangsungJp</span>
                   </marquee>
                 </a>
 
@@ -65,7 +66,7 @@
               <!-- <div class="d-sm-none d-lg-inline-block"><strong>Hi, SULTAN</strong></div> -->
               <!-- </a> -->
               <a href="#" data-toggle="dropdown" class="nav-link nav-link-lg nav-link-user" style="position: relative; display: inline-flex; align-items: center; padding-top: 60px;">
-                <img alt="image" src="http://localhost/undian_doorprize/assets/img/avatar/petir.png"
+                <img alt="image" src="<?php echo base_url("assets/img/avatar/petir.png");?>"
                   style="position: absolute; top: -22px; left: -3px; width: 56px; height: 56px; border-radius: 37%; z-index: 10;">
                 <div class="d-sm-none d-lg-inline-block pt-2 pb-2" style="margin-left: 36px;"><strong>Hi, SULTAN</strong></div>
               </a>
